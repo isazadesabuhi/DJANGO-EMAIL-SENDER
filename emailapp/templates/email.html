@@ -9,6 +9,7 @@
         SEND AN EMAIL
     </h1>
     <form action ="{% url 'email' %}" method="post">
+        {% csrf_token %}
         <table>
             <tr>
                 <td>
