@@ -11,17 +11,22 @@
         <tr>
           <td>TO</td>
           <td>
-            <input type="email" name="toemail" />
+            <input type="email" name="toemail1" />
+          </td>
+        </tr>
+        <tr id="addEmailRow">
+          <td colspan="3">
+            <button type="button" id="addEmail">Add Email</button>
           </td>
         </tr>
         <tr>
           <td>Subject</td>
-          <td>
+          <td colspan="2">
             <input type="text" name="subject" />
           </td>
         </tr>
         <tr>
-          <td colspan="2">
+          <td colspan="3">
             <textarea name="content" cols="30" rows="10"></textarea>
           </td>
         </tr>
@@ -35,5 +40,27 @@
         </tr>
       </table>
     </form>
+    <script>
+      let emailCount = 2; // Start from 3, as 1 and 2 are already present
+
+      document
+        .getElementById("addEmail")
+        .addEventListener("click", function () {
+          const emailInput = document.createElement("input");
+          emailInput.type = "email";
+          emailInput.name = "toemail" + emailCount;
+
+          const newRow = document.createElement("tr");
+          const newCell = document.createElement("td");
+          newCell.colSpan = 3;
+          newCell.appendChild(emailInput);
+          newRow.appendChild(newCell);
+
+          const addEmailRow = document.getElementById("addEmailRow");
+          addEmailRow.parentNode.insertBefore(newRow, addEmailRow);
+
+          emailCount++;
+        });
+    </script>
   </body>
 </html>
