@@ -110,7 +110,19 @@ TIME_ZONE = "UTC"
 
 USE_I18N = True
 
-USE_TZ = True
+USE_L10N = True
+
+USE_TZ = True 
+
+#Email Sending Variables
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "sabuhi.isazade@yahoo.com"
+EMAIL_HOST_PASSWORD = "oeasijursfknfvyt"
+
+#it declares the backend in our project which use to connect with the SMTP server
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
 
 # Static files (CSS, JavaScript, Images)
