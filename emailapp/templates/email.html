@@ -1,16 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{title}}</title>
+    <style>
+      /* General Styles */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #ffffff;
+        margin: 50px;
+        width: auto;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+
+      table {
+        width: 60%;
+        margin: 20px auto;
+        border-collapse: collapse;
+      }
+
+      td {
+        padding: 10px;
+        background-color: #fff;
+      }
+
+      /* Input and Textarea Styles */
+      input[type="email"],
+      input[type="text"],
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+
+      /* Button Styles */
+      button,
+      input[type="submit"],
+      input[type="reset"] {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover,
+      input[type="submit"]:hover,
+      input[type="reset"]:hover {
+        background-color: #0056b3;
+      }
+    </style>
   </head>
+
   <body>
     <h1>SEND AN EMAIL</h1>
+
     <form action="{% url 'email' %}" method="post">
       {% csrf_token %}
       <table>
         <tr>
           <td>TO</td>
-          <td>
+        </tr>
+        <tr>
+          <!-- <td>TO</td> -->
+          <td colspan="3">
             <input type="email" name="toemail1" />
           </td>
         </tr>
@@ -20,8 +81,10 @@
           </td>
         </tr>
         <tr>
-          <td>Subject</td>
-          <td colspan="2">
+          <td colspan="3">Subject</td>
+        </tr>
+        <tr>
+          <td colspan="3">
             <input type="text" name="subject" />
           </td>
         </tr>
@@ -40,8 +103,9 @@
         </tr>
       </table>
     </form>
+
     <script>
-      let emailCount = 2; // Start from 3, as 1 and 2 are already present
+      let emailCount = 2;
 
       document
         .getElementById("addEmail")
