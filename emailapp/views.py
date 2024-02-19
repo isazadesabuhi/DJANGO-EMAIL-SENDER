@@ -3,6 +3,7 @@
 from django.shortcuts import render
 # Function to facilitate email sending.
 from django.core.mail import send_mail
+
 # For accessing project settings, in this case, the email configuration.
 from django.conf import settings
 
@@ -18,6 +19,9 @@ def sendemail(request):
 
         # Initialize an index for looping through dynamic email inputs.
         index = 1
+        # Initialize a counter to track successfully sent emails
+        emails_sent = 0  
+
         # Loop to handle multiple email recipients with dynamic input names (like toemail1, toemail2,...).
         while True:
             # Construct the name of the form input dynamically.
@@ -42,13 +46,19 @@ def sendemail(request):
 
             # Move on to the next possible email input.
             index += 1
+            
+            emails_sent +=1
+            
+            # Check if at least one email was sent successfully
+        email_sent_status = "Your email has been sent!" if emails_sent > 0 else "Failed to send email."
 
         # After sending all emails, render the email template with a title.
         return render(
             request,
             'email.html',
             {
-                'title': 'send an email'
+                'title': 'send an email',
+                'email_sent_status': email_sent_status  # Pass the email sent status to the template
             }
         )
     else:
@@ -57,6 +67,6 @@ def sendemail(request):
             request,
             'email.html',
             {
-                'title': 'send an email'
+                'title': 'send an email',
             }
         )
